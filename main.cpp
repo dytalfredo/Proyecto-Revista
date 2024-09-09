@@ -43,39 +43,60 @@ void limpiarPantalla(){
 	system("cls");
 }
 
-// Función para mostrar todos los artículos
+// Función para mostrar todos los artículos     //3
 void mostrarArticulos(Articulo articulos[], int numArticulos, bool e) {
 	if(e){
 		for (int i = 0; i < numArticulos; ++i) {
     
-        std::cout << "Article N°: " << articulos[i].indice << std::endl;
+        std::cout << "Option: " << i+1;
         std::cout << "  Title: " << articulos[i].titulo ;
         std::cout << "  Autor: " << articulos[i].autor;
         std::cout << "  Type: " << articulos[i].tipo;
         saltoLinea();
-         saltoLinea();
-    }
+
+	}
+	separacion();
+	cout<< "Option:13--->Logarithm Calculator"<<endl;
+    cout<< "Opcion:14--->Opinion Video"<<endl;
+    cout<< "Opcion:15--->General Help"<<endl;
 	} else {
 	
     for (int i = 0; i < numArticulos; ++i) {
     
-        std::cout << "Articulo N°: " << articulos[i].indice << std::endl;
-        std::cout << "  Titulo: " << articulos[i].titulo ;
-        std::cout << "  Autor: " << articulos[i].autor;
-        std::cout << "  Tipo: " << articulos[i].tipo;
+        std::cout << "Opcion:" << i+1;
+        std::cout << "-> Titulo:" << articulos[i].titulo ;
+        std::cout << " - Autor:" << articulos[i].autor;
+        std::cout << " - Tipo:" << articulos[i].tipo;
         saltoLinea();
-         saltoLinea();
+
     }
+    
+    separacion();
+    cout<< "Opcion:13--->Calculadora Logaritmos"<<endl;
+    cout<< "Opcion:14--->Video De Opinion"<<endl;
+    cout<< "Opcion:15--->Ayuda General"<<endl;
 }
 }
 
 void abrirArticulo(Articulo articulos[], int numeroArticulo, int numArticulos){
 
-numeroArticulo= numeroArticulo-1;
 
-if(numeroArticulo<numArticulos && numeroArticulo>=0){
+
+numeroArticulo= numeroArticulo-1;
+if (numeroArticulo==12){
+	//abre calculador
+	string comando ="start calculadoraLogaritmo/CalculadoraLogaritmo.exe";
+	system(comando.c_str());
+}else if(numeroArticulo==13){
+	//Muestro Video
+	string comando ="start contenido/video.mp4";
+	system(comando.c_str());
+	
+	
+}else if(numeroArticulo<numArticulos && numeroArticulo>=0){
 imprimirMensaje("Artículo abierto en pantalla");
 string comando = "start contenido/" + articulos[numeroArticulo].indice +".pdf";
+//start contenido/1.pdf
 system(comando.c_str());
 saltoLinea();
 }
@@ -93,7 +114,9 @@ pos--;
     if (pos >= 0 && pos < numeroArticulos) {
         // Desplazar todos los elementos a partir de la posición hacia la izquierda
         for (int i = pos; i < numeroArticulos - 1; i++) {
+        
             articulos[i] = articulos[i+1];
+            
         }
         
         std::cout <<"Articulo "<< articulos[pos++].indice <<" borrado" <<std::endl;
@@ -111,19 +134,26 @@ int main() {
     int numArticulos = 0;
     int numArticulosEng = 0;
     int lenguajeOption;
-	int opcion2;
-	int opcion3;
+
 	char respuesta;
-    char numArticulo;
+    int numArticulo;
     bool e= false;
     //Generacion Automatica de Articulos En español e ingles
-    crearArticulo(articulosSpa, numArticulos, "Portada","1", "Equipo", "Diseño");
-    crearArticulo(articulosSpa, numArticulos, "Contenido","2", "Equipo", "Diseño");
-    crearArticulo(articulosSpa, numArticulos, "La Voceria","3", "Alfredo Mendoza", "Art. Cientifico");
-    crearArticulo(articulosSpa, numArticulos, "Humano-Máquina","4", "Zuzej Crespo", "Art. Investigación");
-    crearArticulo(articulosSpa, numArticulos, "Los Logaritmos","5", "Dario Montero", "Art. Matematico");
-    crearArticulo(articulosSpa, numArticulos, "Como Nace Un Vocero","6", "Alfredo Mendoza", "Cronica");
-    crearArticulo(articulosSpa, numArticulos, "Calculadora de Logaritmo","7", "Equipo", "Programa");
+    crearArticulo(articulosSpa, numArticulos, "Portada","1", "Equipo", "Grafico");
+    crearArticulo(articulosSpa, numArticulos, "Contenido","2", "Equipo", "Grafico");
+    crearArticulo(articulosSpa, numArticulos, "Editorial","3", "Alfredo Mendoza", "Editorial");
+    crearArticulo(articulosSpa, numArticulos, "La Voceria","4", "Alfredo Mendoza", "Art. Cientifico");
+    crearArticulo(articulosSpa, numArticulos, "Humano-Maquina","5", "Zuzej Crespo", "Art. Investigación");
+    crearArticulo(articulosSpa, numArticulos, "Los Logaritmos","6", "Dario Montero", "Art. Matematico");
+    crearArticulo(articulosSpa, numArticulos, "Como Nace Un Vocero","7", "Alfredo Mendoza", "Cronica");
+    crearArticulo(articulosSpa, numArticulos, "Bots de Internet","8", "Jesus Castillo", "Art. Investigación + Manual");
+    crearArticulo(articulosSpa, numArticulos, "Adios, caos. Hola, organización","9", "Melary Morales", "Art. Opinion");
+    crearArticulo(articulosSpa, numArticulos, "Ruido Blanco","10", "Dario Montero", "Art. Opinion");
+    crearArticulo(articulosSpa, numArticulos, "Contra Portada","11", "Equipo", "Grafico");
+    crearArticulo(articulosSpa, numArticulos, "Revista Completa","12", "Equipo", "Maravilloso");
+    
+    
+    
     
     crearArticulo(articulosEng, numArticulosEng, "Cover","1", "Team", "Desing");
     crearArticulo(articulosEng, numArticulosEng, "Content","2", "Team", "Desing");
@@ -131,7 +161,7 @@ int main() {
     crearArticulo(articulosEng, numArticulosEng, "Human-Machine","4", "Zuzej Crespo", "Art. Research");
     crearArticulo(articulosEng, numArticulosEng, "The logarithms","5", "Dario Montero", "Art. Mathematical");
     crearArticulo(articulosEng, numArticulosEng, "How a Spokesperson Is Born","6", "Alfredo Mendoza", "Chronicle");
-    crearArticulo(articulosEng, numArticulosEng, "Logarithm Calculator","7", "Equipo", "Program");
+   
     
     
 
@@ -147,7 +177,7 @@ int main() {
 	
 	do{
         imprimirMensaje("Antes de comenzar selecciona un idioma. Escribe solo el numero segun el idioma que deseas?");
-		imprimirMensaje("1. Español");
+		imprimirMensaje("1. Espanol");
 		imprimirMensaje("2. Ingles");
 		imprimirMensaje("3. Salir");
 		std::cin >> lenguajeOption;
@@ -169,34 +199,35 @@ int main() {
                 imprimirMensaje("Edicion: Ni Una Palabra Perdida");
                 saltoLinea();
                 imprimirMensaje("Instrucciones:");
-                imprimirMensaje("Cada artículo posee un dígito referencial, ingresa el número del artículo que deseas ver.");
+                imprimirMensaje("Cada artículo posee un digito referencial, ingresa el numero del artículo que deseas ver.");
                 separacion();
                 imprimirMensaje( "/--------------------INDICE-------------------------/");
                 separacion();
                 imprimirMensaje("Ingresa el número del artículo que deseas leer");
                 saltoLinea();
                 mostrarArticulos(articulosSpa,numArticulos,e);
-                imprimirMensaje("Si desea eliminar un articulo presione la tecla d/D");
+                imprimirMensaje("Si desea eliminar un articulo escriba 99");
                 
                
                 std::cin >> numArticulo;
-                if(numArticulo=='d' || numArticulo == 'D'){
+                if(numArticulo==99){
                 	imprimirMensaje("Eliga el numero del articulo que desea eliminar");
-                	std::cin >> numArticulo;
-                	int num = numArticulo - '0';
-                	std::cout << num;
-                	eliminarElemento(articulosSpa,numArticulos, num );
+                	cin >> numArticulo;
+                	
+                
+                	eliminarElemento(articulosSpa,numArticulos, numArticulo );
 				} else {
-					int num = numArticulo - '0';
-					abrirArticulo(articulosSpa, num, numArticulos);
-                limpiarPantalla();
+					cout << "Numero obtenido" << numArticulo;
+				
+					abrirArticulo(articulosSpa, numArticulo, numArticulos);
+              
 				}
+                	 limpiarPantalla();
                 
                 
-                
-                imprimirMensaje("¿Desea abrir otro artículo? (s/n)");
+                imprimirMensaje("¿Desea abrir otro articulo? (s/n)");
                 std::cin >> respuesta;
-                limpiarPantalla();
+              //  limpiarPantalla();
                 
                 }while(respuesta == 's' || respuesta == 'S');
                 
